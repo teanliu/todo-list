@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const StyledFooter = styled.footer`
@@ -32,10 +33,16 @@ const StyledButton = styled.button`
 `;
 
 const Footer = ({ numOfTodos }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    localStorage.removeItem('authToken');
+    navigate("/login");
+  }
+
   return (
     <StyledFooter>
       <p>Uncompleted： {numOfTodos}</p>
-      <StyledButton>Logout</StyledButton>
+      <StyledButton onClick={handleClick}>Logout</StyledButton>
     </StyledFooter>
   );
 };
