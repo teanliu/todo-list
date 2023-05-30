@@ -2,7 +2,7 @@ import { getTodos, createTodo, patchTodo, deleteTodo } from '../api/todos';
 import { Footer, Header, TodoCollection, TodoInput } from 'components';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { checkPermission } from 'api/auth';
+import { useAuth } from '../contexts/AuthContext';
 
 
 
@@ -11,6 +11,7 @@ const TodoPage = () => {
   const [todos, setTodos] = useState([]);
   const numOfTodos = todos.length;
   const navigate = useNavigate();
+  const { isAuthenticated, currentMember } = useAuth();
 
   const handleChange = (value) => {
     setInputValue(value);
@@ -134,21 +135,7 @@ const TodoPage = () => {
     
   };
 
-  useEffect(() => {
-    const checkTokenIsValid = async () => {
-      const authToken = localStorage.getItem('authToken');
-      if (!authToken) {
-        navigate('/login');
-      }
-      const result = await checkPermission(authToken);
-
-      if (!result) {
-        navigate('/login');
-      }
-    };
-
-    checkTokenIsValid();
-  }, [navigate]);
+  
 
   useEffect(() => {
     const getTodosAsync = async () => {
@@ -165,11 +152,17 @@ const TodoPage = () => {
     getTodosAsync();
   }, [])
 
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+    }
+  }, [navigate, isAuthenticated]);
+
 
   return (
     <div>
       TodoPage
-      <Header />
+      <Header userName={currentMember?.name}/>
       <TodoInput inputValue={inputValue} onChange={handleChange} onAddTodo={handleAddTodo} onKeyDown={handleKeyDown}/>
       <TodoCollection todos={todos} onToggleDone={handleToggleDone} onChangeMode={handleChangeMode} onSave={handleSave} onDelete={handleDelete}/>
       <Footer numOfTodos={numOfTodos}/>

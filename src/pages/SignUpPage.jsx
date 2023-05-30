@@ -8,8 +8,8 @@ import { ACLogoIcon } from 'assets/images';
 import { AuthInput } from 'components';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { checkPermission, register } from 'api/auth';
 import Swal from 'sweetalert2';
+import { useAuth } from 'contexts/AuthContext';
 
 const SignUpPage = () => {
   const [userName, setUserName] = useState('');
@@ -17,12 +17,13 @@ const SignUpPage = () => {
   const [userPassword, setUserPassword] = useState('');
   const navigate = useNavigate();
 
+  const { register, isAuthenticated } = useAuth();
+
   const handleClick = async () => {
     if (!userName.length || !userPassword.length || !userEmail.length) return;
-    const { success, authToken } = await register({ userName, userEmail, userPassword });
+    const success = await register({ userName, userEmail, userPassword });
 
     if (success) {
-      localStorage.setItem('authToken', authToken);
       Swal.fire({
         position: 'top',
         title: 'Successfully Registered！',
@@ -30,7 +31,6 @@ const SignUpPage = () => {
         icon: 'success',
         showConfirmButton: false,
       });
-      navigate("/login");
       return;
     }
 
@@ -44,20 +44,10 @@ const SignUpPage = () => {
   };
 
   useEffect(()=> {
-    const checkTokenIsValid = async() => {
-      const authToken = localStorage.getItem('authToken');
-      if (!authToken) {
-        return;
-      }
-      const result = await checkPermission(authToken);
-      
-      if (result) {
-        navigate('/todo');
-      }
-    };
-
-    checkTokenIsValid();
-  }, [navigate]);
+    if (isAuthenticated) {
+      navigate('/todo');
+    }
+  }, [navigate, isAuthenticated]);
 
 
   return (
@@ -65,7 +55,7 @@ const SignUpPage = () => {
       <div>
         <ACLogoIcon />
       </div>
-      <h1>建立您的帳號</h1>
+      <h1>Create Your Account</h1>
 
       <AuthInputContainer>
         <AuthInput
@@ -96,9 +86,9 @@ const SignUpPage = () => {
           }
         />
       </AuthInputContainer>
-      <AuthButton onClick={handleClick}>註冊</AuthButton>
+      <AuthButton onClick={handleClick}>Register</AuthButton>
       <Link to="/login">
-        <AuthLinkText>取消</AuthLinkText>
+        <AuthLinkText>Cancel</AuthLinkText>
       </Link>
     </AuthContainer>
   );

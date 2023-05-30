@@ -27,7 +27,7 @@ export const register = async ({ userName, userEmail, userPassword }) => {
       email: userEmail,
       password: userPassword,
     });
-    console.log(data);
+    // console.log(data);
     const { authToken } = data;
 
     if (authToken) {

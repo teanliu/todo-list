@@ -80,7 +80,7 @@ const TodoInput = ({ inputValue, onChange, onKeyDown, onAddTodo}) => {
         <input
           id="add-todo-input"
           type="text"
-          placeholder="新增工作"
+          placeholder="Add a new task"
           value={inputValue}
           onChange={(e) => {
             onChange?.(e.target.value);
@@ -96,7 +96,7 @@ const TodoInput = ({ inputValue, onChange, onKeyDown, onAddTodo}) => {
         className={clsx('', { active: inputValue.length })}
       >
         <button className="btn-reset" onClick={() => onAddTodo?.()}>
-          新增
+          Add
         </button>
       </StyledAddTodoActionContainer>
     </StyledAddTodoContainer>
