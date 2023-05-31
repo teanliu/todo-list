@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from 'contexts/AuthContext';
 
 const StyledFooter = styled.footer`
   display: flex;

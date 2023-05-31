@@ -1,5 +1,5 @@
 import './App.scss';
-import { TodoPage, LoginPage, SignUpPage, HomePage } from './pages';
+import { TodoPage, LoginPage, SignUpPage, HomePage } from 'pages';
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import {AuthProvider} from 'contexts/AuthContext'
 
