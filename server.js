@@ -10,13 +10,9 @@ app.use(middlewares);
 app.use(router);
 // app.use('/db', middlewares, router);
 app.use(express.static(path.join(__dirname, 'build')));
-
-if (process.env.NODE_ENV === "production" || process.env.NODE_ENV === "staging") {
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  });
-}
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.listen(PORT, () => {
   console.log('Server is running on Heroku');
