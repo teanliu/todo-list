@@ -3,7 +3,7 @@ import {
   CheckActiveIcon,
   CheckCircleIcon,
   CheckHoverIcon,
-} from 'assets/images';
+} from '../assets/images';
 import clsx from 'clsx';
 import { useRef } from 'react';
 

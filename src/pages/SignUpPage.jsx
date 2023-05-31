@@ -3,13 +3,13 @@ import {
   AuthInputContainer,
   AuthButton,
   AuthLinkText,
-} from 'components/common/auth.styled';
-import { ACLogoIcon } from 'assets/images';
-import { AuthInput } from 'components';
+} from '../components/common/auth.styled';
+import { ACLogoIcon } from '../assets/images';
+import { AuthInput } from '../components';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
-import { useAuth } from 'contexts/AuthContext';
+import { useAuth } from '../contexts/AuthContext';
 
 const SignUpPage = () => {
   const [userName, setUserName] = useState('');

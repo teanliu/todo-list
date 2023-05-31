@@ -3,9 +3,9 @@ import {
   AuthInputContainer,
   AuthButton,
   AuthLinkText,
-} from 'components/common/auth.styled';
-import { ACLogoIcon } from 'assets/images';
-import { AuthInput } from 'components';
+} from '../components/common/auth.styled';
+import { ACLogoIcon } from '../assets/images';
+import { AuthInput } from '../components';
 import { useState, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';

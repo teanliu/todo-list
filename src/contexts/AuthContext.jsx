@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { Navigate, useLocation } from "react-router-dom";
-import { register, login, checkPermission } from "api/auth";
+import { register, login, checkPermission } from "../api/auth";
 import * as jwt from "jsonwebtoken";
 
 const defaultAuthContext = {
