@@ -9,12 +9,12 @@ const PORT = process.env.PORT || 8000;
 app.use(middlewares);
 app.use(router);
 // app.use('/db', middlewares, router);
-app.use(express.static(path.join(__dirname, '..', 'build')));
+app.use(express.static(path.join(__dirname, 'build')));
 app.use((req, res, next) => {
-  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 app.listen(PORT, () => {
   console.log('Server is running on Heroku');
