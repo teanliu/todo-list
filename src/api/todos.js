@@ -1,8 +1,8 @@
 import axios from 'axios';
-// const baseUrl = 'http://localhost:3001';
+const baseUrl = 'http://localhost:8000/api';
 // "start": "react-scripts start",
 //     "dev-server": "json-server --watch db.json --port 3001",
-const baseUrl = 'https://todo-list-reactapplication.herokuapp.com';
+// const baseUrl = 'https://todo-list-reactapplication.herokuapp.com';
 
 export const getTodos = async () => {
   try {
