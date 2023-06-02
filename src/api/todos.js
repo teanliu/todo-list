@@ -1,6 +1,6 @@
 import axios from 'axios';
 // const baseUrl = 'http://localhost:8000/api';
-const baseUrl = 'https://todo-list-reactapplication.herokuapp.com';
+const baseUrl = 'https://todo-list-reactapplication.herokuapp.com/api';
 
 export const getTodos = async () => {
   try {
