@@ -23,7 +23,7 @@ axiosInstance.interceptors.request.use(
 export const getTodos = async () => {
   try {
     const res = await axiosInstance.get(`${baseUrl}/todos`);
-    return res.data;
+    return res.data.data;
   } catch (e) {
     console.error('[get todos failed]: ', e);
   }
